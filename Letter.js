@@ -1,22 +1,32 @@
-var letterGuessed = "";
-var letterGenerated = "";
-
-var Letter = function(letter) {
-    this.letter = letter;
-    this.letterGuessed = false;
-    this.showLetters = function (){
-        if (letterGuessed === letterGenerated){
-            //if guessed: show letter
+var Letter = function(letterPassed) {
+    this.letter = letterPassed;
+    console.log(this.letter);
+    this.guessed = false;
+    this.checkedLetter = function (){
+        if (this.letter === "k"){
+            this.guessed = true;
         }
         else {
-            //show underscore 
+            this.guessed = false;
         }
-    };
-    this.updateBoolean = function (/*pass stuff here */ ) {
-        this.letterGuessed = true;
-    };
+    }
+    this.showLetter = function (){
+        if (this.guessed == true){
+            console.log(this.letter);
+        }
+        else {
+            console.log("_");
+        }
+    }
+   
 }
-  
 
+
+var testLetter = new Letter("k");
+testLetter.showLetter();
+
+var testLetter2 = new Letter ("p");
+testLetter2.showLetter();
+  
 // Exporting Letter constructor
 module.exports = Letter;
