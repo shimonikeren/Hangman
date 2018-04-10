@@ -1,10 +1,7 @@
-//require Word.js
 var Word = require("./Word.js");
-
-//require inquirer to grab user input 
 var inquirer = require('inquirer');
 
-var wordBank = ["cool", "dog", "cat"];
+var wordBank = ["flowers", "trees", "mountains", "oceans", "rivers"];
 
 var wordGenerator;
 var complexWord;
@@ -12,9 +9,7 @@ var maxGuesses;
 
 promptUserToPlay();
 
-
 function takeUserGuesses(){
-  
   inquirer
     .prompt([
       {
@@ -39,7 +34,6 @@ function takeUserGuesses(){
         else{
           console.log("YOU LOST!!!");
         }
-
         promptUserToPlay();
       }
     })
@@ -48,10 +42,6 @@ function takeUserGuesses(){
 function checkWin() {
   var trueGuesses = 0;
   for (var i=0; i < myComplexWord.complexWord.length; i++) {
-    // EVALUATE the amount of correct guesses by comparing guessCounter to myComplexWord.length
-    // 3 = 3 => win
-    // for eachLetter.guessed === true
-    // update trueGueses
     var eachLetter = myComplexWord.complexWord[i];
     
     if (eachLetter.guessed === true) {
@@ -64,27 +54,17 @@ function checkWin() {
   } else {
     return false;
   }
-
-  // get the length of the array of word string myComplexWord.length
-
-
 }
 
 function promptUserToPlay(){
-
-  wordGenerator = wordBank[Math.floor(Math.random() * wordBank.length)];
-
-console.log("global generated word: " + wordGenerator);
-
+wordGenerator = wordBank[Math.floor(Math.random() * wordBank.length)];
 myComplexWord = new Word(wordGenerator);
-
-maxGuesses = 6;
-
+maxGuesses = 10;
   inquirer
     .prompt([
       {
           type: "confirm",
-          message: "Are you ready to play?:",
+          message: "Are you ready to play Nature-Themed-Hangman?:",
           name: "confirm"
         } 
       ]).then(function(inquirerResponse) {
@@ -92,6 +72,6 @@ maxGuesses = 6;
           myComplexWord.showWord();
           takeUserGuesses();
         }
-      });
+    });
 }
     
